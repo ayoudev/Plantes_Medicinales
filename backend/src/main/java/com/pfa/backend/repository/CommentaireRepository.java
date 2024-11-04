@@ -1,6 +1,6 @@
 package com.pfa.backend.repository;
 
-import com.pfa.backend.entiey.Commentaire;
+import com.pfa.backend.entity.Commentaire;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

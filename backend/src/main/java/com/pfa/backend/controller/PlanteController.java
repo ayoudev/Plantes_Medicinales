@@ -1,8 +1,8 @@
 package com.pfa.backend.controller;
 
-import com.pfa.backend.entiey.Plante;
-import com.pfa.backend.repository.PlanteRepository;
-import org.springframework.beans.factory.annotation.*;
+import com.pfa.backend.entity.Plante;
+import com.pfa.backend.service.PlanteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +11,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/plantes")
 public class PlanteController {
+
+    private final PlanteService planteService;
+
     @Autowired
-    private PlanteRepository planteRepository;
+    public PlanteController(PlanteService planteService) {
+        this.planteService = planteService;
+    }
 
     @GetMapping
     public List<Plante> getAllPlantes() {
-        return planteRepository.findAll();
+        return planteService.getAllPlantes();
     }
 
     @GetMapping("/search")
@@ -24,12 +29,12 @@ public class PlanteController {
                                       @RequestParam(required = false) String propriete,
                                       @RequestParam(required = false) String utilisation,
                                       @RequestParam(required = false) String region) {
-        return planteRepository.searchPlantes(nom, propriete, utilisation, region);
+        return planteService.searchPlantes(nom, propriete, utilisation, region);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Plante> getPlanteById(@PathVariable Long id) {
-        return planteRepository.findById(id)
+        return planteService.getPlanteById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

@@ -1,4 +1,4 @@
-package com.pfa.backend.entiey;
+package com.pfa.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

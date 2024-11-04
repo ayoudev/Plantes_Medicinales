@@ -1,7 +1,7 @@
 package com.pfa.backend.controller;
 
-import com.pfa.backend.entiey.Plante;
-import com.pfa.backend.repository.PlanteRepository;
+import com.pfa.backend.entity.Plante;
+import com.pfa.backend.service.RecommandationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +13,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/recommandations")
 public class RecommandationController {
+
+    private final RecommandationService recommandationService;
+
     @Autowired
-    private PlanteRepository planteRepository;
+    public RecommandationController(RecommandationService recommandationService) {
+        this.recommandationService = recommandationService;
+    }
 
     @GetMapping("/{userId}")
     public List<Plante> getRecommandations(@PathVariable Long userId) {
-        return null;
+        return recommandationService.getRecommandations(userId);
     }
 }

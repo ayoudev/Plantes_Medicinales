@@ -1,15 +1,16 @@
-package com.pfa.backend.entiey;
+package com.pfa.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-public class Image {
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String url;
+    private String titre;
+    private String contenu;
 
     @ManyToOne
     @JoinColumn(name = "plante_id")
