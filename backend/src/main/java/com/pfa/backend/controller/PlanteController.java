@@ -19,6 +19,10 @@ public class PlanteController {
         this.planteService = planteService;
     }
 
+    @PostMapping("/add")
+    public Plante createPlante(@RequestBody Plante plante) {
+        return planteService.createPlante(plante);
+    }
     @GetMapping
     public List<Plante> getAllPlantes() {
         return planteService.getAllPlantes();
@@ -37,5 +41,10 @@ public class PlanteController {
         return planteService.getPlanteById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deletePlante(@PathVariable Long id) {
+        planteService.deletePlante(id);
+        return ResponseEntity.noContent().build();
     }
 }

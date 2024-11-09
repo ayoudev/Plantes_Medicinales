@@ -17,14 +17,23 @@ public class Plante {
     private String utilisation;
     private String precaution;
     private String regionGeographique;
+    @ManyToOne
+    @JoinColumn(name = "categorie_id")
+    private Categorie categorie;
+    @ManyToMany
+    @JoinTable(
+            name = "plante_maladie",
+            joinColumns = @JoinColumn(name = "plante_id"),
+            inverseJoinColumns = @JoinColumn(name = "maladie_id"))
+    private List<Maladie> maladies;
 
-    @OneToMany(mappedBy = "plante")
-    private List<Image> images;
-
-    @OneToMany(mappedBy = "plante")
+    @OneToMany(mappedBy = "plante", cascade = CascadeType.ALL)
     private List<Article> articles;
 
-    @OneToMany(mappedBy = "plante")
+    @OneToMany(mappedBy = "plante", cascade = CascadeType.ALL)
+    private List<Image> images;
+
+    @OneToMany(mappedBy = "plante", cascade = CascadeType.ALL)
     private List<Commentaire> commentaires;
 
 }

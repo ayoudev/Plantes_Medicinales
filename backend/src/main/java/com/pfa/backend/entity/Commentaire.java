@@ -18,6 +18,8 @@ public class Commentaire {
     @JoinColumn(name = "plante_id")
     private Plante plante;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    private Utilisateur utilisateur;
 }
 

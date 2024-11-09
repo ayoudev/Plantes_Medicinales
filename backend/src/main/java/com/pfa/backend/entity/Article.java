@@ -16,4 +16,7 @@ public class Article {
     @JoinColumn(name = "plante_id")
     private Plante plante;
 
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    private Utilisateur utilisateur;
 }

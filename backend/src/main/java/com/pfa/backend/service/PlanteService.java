@@ -18,6 +18,13 @@ public class PlanteService {
         this.planteRepository = planteRepository;
     }
 
+    public Plante createPlante(Plante plante) {
+        return planteRepository.save(plante);
+    }
+
+    public void deletePlante(Long id) {
+        planteRepository.deleteById(id);
+    }
     public List<Plante> getAllPlantes() {
         return planteRepository.findAll();
     }
